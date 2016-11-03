@@ -54,7 +54,7 @@ export default class App extends Component {
 
         <TouchableOpacity onPress={() => this.setState({example: ReservationSuccessScreenExample})}>
           <Text style={styles.buttonText}>
-            Reservation Success Screen
+            Reservation Flow
           </Text>
         </TouchableOpacity>
 

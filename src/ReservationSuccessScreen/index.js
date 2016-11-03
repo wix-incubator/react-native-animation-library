@@ -21,7 +21,7 @@ export default class ReservationSuccessScreen extends Component {
   }
 
   dismiss() {
-    this.animateStuff();
+    this.props.onSuccessDone();
   }
 
   componentDidMount() {
@@ -33,33 +33,36 @@ export default class ReservationSuccessScreen extends Component {
     this.state.titleFadeAnim.setValue(0);
     this.state.contentFadeAnim.setValue(0);
 
-    Animated.parallel([
-      Animated.timing(
-        this.state.imageOpacityValue,
-        {
-          duration: 400,
-          toValue: 1,
-          easing: Easing.elastic(1)
-        }
-      ),
-      Animated.timing(
-        this.state.titleFadeAnim,
-        {
-          duration: 400,
-          toValue: 1,
-          easing: Easing.elastic(0.9),
-          delay: 100,
-        }
-      ),
-      Animated.timing(
-        this.state.contentFadeAnim,
-        {
-          duration: 400,
-          toValue: 1,
-          easing: Easing.elastic(0.7),
-          delay: 200
-        }
-      ),
+    Animated.sequence([
+      Animated.timing(new Animated.Value(0), {duration: 300}),
+      Animated.parallel([
+        Animated.timing(
+          this.state.imageOpacityValue,
+          {
+            duration: 400,
+            toValue: 1,
+            easing: Easing.elastic(1)
+          }
+        ),
+        Animated.timing(
+          this.state.titleFadeAnim,
+          {
+            duration: 400,
+            toValue: 1,
+            easing: Easing.elastic(0.9),
+            delay: 100,
+          }
+        ),
+        Animated.timing(
+          this.state.contentFadeAnim,
+          {
+            duration: 400,
+            toValue: 1,
+            easing: Easing.elastic(0.7),
+            delay: 200
+          }
+        ),
+      ])
     ]).start();
   }
 
