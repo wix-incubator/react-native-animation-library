@@ -8,6 +8,7 @@ import {
   Switch
 } from 'react-native';
 import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
+import RNALPrettySwitch from '../../src/RNALPrettySwitch/RNALPrettySwitch';
 
 export class GroupChatScreen extends Component {
   constructor(props) {
@@ -39,6 +40,18 @@ export class GroupChatScreen extends Component {
     )
   }
 
+  renderButton() {
+    return (
+      <View style={{
+        position: 'absolute',
+        right: 25,
+        top: 193,
+      }}>
+        <RNALPrettySwitch />
+      </View>
+    )
+  }
+
   render() {
     return (
       <View style={{
@@ -60,6 +73,7 @@ export class GroupChatScreen extends Component {
               height: null,
             }}
         />
+        {this.renderButton()}
 
         {this._renderNoiseMaker()}
 
