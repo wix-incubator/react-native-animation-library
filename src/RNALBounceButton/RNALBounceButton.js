@@ -9,22 +9,7 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
-import Svg,{
-  Circle,
-  Ellipse,
-  G,
-  LinearGradient,
-  RadialGradient,
-  Line,
-  Path,
-  Polygon,
-  Polyline,
-  Rect,
-  Symbol,
-  Use,
-  Defs,
-  Stop
-} from 'react-native-svg';
+
 
 export default class RNALPrettyFlipButton extends Component {
 
