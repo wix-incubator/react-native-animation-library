@@ -8,7 +8,7 @@ import {
   Switch
 } from 'react-native';
 import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
-import {RNALPrettyBoxSwitch} from '../../src';
+import {RNALPrettyFlipButton} from '../../src';
 
 export default class RNALPrettyBoxSwitchScreen extends Component {
   constructor(props) {
@@ -44,17 +44,12 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
   }
 
   render() {
-    console.log('render', this.state.noiseMakerIsOn);
     return (
       <View style={{flex: 1}}>
-        <RNALPrettyBoxSwitch/>
-
-        <Switch
-          value={this.state.noiseMakerIsOn}
-          onValueChange={(val)=> this._onSwitchChanged(val)}
+        <RNALPrettyFlipButton
+          firstState={{image: require('../Images/CameraIcon.png')}}
+          secondState={{image: require('../Images/SendIcon.png')}}
         />
-
-        {this._renderNoiseMaker()}
       </View>
     );
   }

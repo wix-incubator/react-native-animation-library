@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
   View,
-  Dimensions,
   Switch,
   Animated,
-  LayoutAnimation,
   StyleSheet,
   Easing,
-  Text
+  Text,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 export default class RNALPrettyFlipButton extends Component {
@@ -15,13 +15,83 @@ export default class RNALPrettyFlipButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      presentedImage: this.props.firstState.image,
+      scaleValue: new Animated.Value(1)
     }
+  }
+
+  _onPressButton() {
+    //const image = this.state.presentedImage === this.props.firstState.image ? this.props.secondState.image : this.props.firstState.image
+    //this.setState({presentedImage: image});
+
+    Animated.sequence([
+      Animated.timing(
+        this.state.scaleValue,
+        {
+          duration: 70,
+          toValue: 1.2,
+          easing: Easing.linear
+        }
+      ),
+      Animated.timing(
+        this.state.scaleValue,
+        {
+          duration: 100,
+          toValue: 0.1,
+          easing: Easing.linear
+        }
+      )
+    ]).start(()=>this._swapImages());
+  }
+
+  _swapImages() {
+    const image = this.state.presentedImage === this.props.firstState.image ? this.props.secondState.image : this.props.firstState.image
+    this.setState({presentedImage: image});
+
+    //console.error(image);
+
+    Animated.sequence([
+      Animated.timing(
+        this.state.scaleValue,
+        {
+          duration: 100,
+          toValue: 1,
+          easing: Easing.linear
+        }
+      ),
+      Animated.timing(
+        this.state.scaleValue,
+        {
+          duration: 70,
+          toValue: 1.2,
+          easing: Easing.linear
+        }
+      ),
+      Animated.timing(
+        this.state.scaleValue,
+        {
+          duration: 70,
+          toValue: 1,
+          easing: Easing.linear
+        }
+      )
+    ]).start();
   }
 
   render() {
     return (
       <View style={styles.container}>
-
+        <TouchableOpacity onPress={() => this._onPressButton()}>
+          <Animated.Image
+            source={this.state.presentedImage}
+            resizeMode={Image.resizeMode.center}
+            style={{
+              transform: [                        // `transform` is an ordered array
+                {scale: this.state.scaleValue},  // Map `bounceValue` to `scale`
+              ]
+            }}
+          />
+        </TouchableOpacity>
       </View>
     )
   }
@@ -30,7 +100,7 @@ export default class RNALPrettyFlipButton extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, flexDirection: 'row', backgroundColor: '#eeeeee', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden'
+    flex: 1, flexDirection: 'row', backgroundColor: 'lightblue', justifyContent: 'center', alignItems: 'center'
   },
   switchContainer: {
   },
