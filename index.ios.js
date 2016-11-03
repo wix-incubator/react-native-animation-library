@@ -8,6 +8,7 @@ import {
   Switch
 } from 'react-native';
 import BridgeNoiseMaker from './src/BridgeNoiseMaker';
+import {RNALPrettyBoxSwitch} from './src';
 
 export default class RNAnimationLib extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class RNAnimationLib extends Component {
   }
 
   componentDidMount() {
-    this.state.bounceValue.setValue(5);
+    this.state.bounceValue.setValue(1.5);
     Animated.spring(
       this.state.bounceValue,
       {
@@ -46,6 +47,7 @@ export default class RNAnimationLib extends Component {
     console.log('render', this.state.noiseMakerIsOn);
     return (
       <View style={{flex: 1}}>
+        <RNALPrettyBoxSwitch/>
         <Animated.Image
           source={{uri: 'https://i.imgur.com/XMKOH81.jpg'}}
           style={{
