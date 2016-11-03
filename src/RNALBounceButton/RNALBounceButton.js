@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 
-export default class RNALPrettyFlipButton extends Component {
+export default class RNALBounceButton extends Component {
 
   constructor(props) {
     super(props);
@@ -87,14 +87,16 @@ export default class RNALPrettyFlipButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={() => this._onPressButton()} activeOpacity={0.8}>
+      <TouchableOpacity onPress={() => this._onPressButton()} activeOpacity={0.8} style={this.props.style}>
         <Animated.Image
           source={this.state.presentedImage}
           style={{
             transform: [
               {scale: this.state.scaleValue},
             ],
-            opacity: this.state.opacityValue
+            opacity: this.state.opacityValue,
+            width: this.props.style.width,
+            height: this.props.style.height,
           }}
         />
 

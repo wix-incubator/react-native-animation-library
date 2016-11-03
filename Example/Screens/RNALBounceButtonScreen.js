@@ -23,8 +23,8 @@ export default class RNALBounceButtonScreen extends Component {
 
   render() {
     return (
-      <View style={{flex:1, justifyContent: 'center',alignItems: 'center', backgroundColor: 'gray'}}>
-        <RNALBounceButton firstImage={require('./../Images/favorite_empty.png')} secondImage={require('./../Images/favorite_full.png')}/>
+      <View style={{flex:1, justifyContent: 'center',alignItems: 'center', backgroundColor: 'white'}}>
+        <RNALBounceButton style={{width:94, height:89}} firstImage={require('./../Images/favorite_empty@2x.png')} secondImage={require('./../Images/favorite_full@2x.png')}/>
       </View>
     );
   }

@@ -6,7 +6,8 @@ import {
   View,
   Animated,
   Switch,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
 import {RNALBounceButton} from '../../src';
@@ -24,7 +25,15 @@ export default class RNALBlogExample extends Component {
   render() {
     return (
       <View style={{flex:1, justifyContent: 'center',alignItems: 'center', backgroundColor: 'gray'}}>
-        <RNALBounceButton firstImage={require('./../Images/favorite_empty.png')} secondImage={require('./../Images/favorite_full.png')}/>
+        <Image
+          source={require('./../Images/blog.png')}
+          resizeMode={Image.resizeMode.center}
+          style={{ flex: 1}}
+        />
+        <RNALBounceButton
+          style={{zIndex: 100, position: 'absolute', top:506, left: 25, width: 20, height: 20}}
+          firstImage={require('./../Images/favorite_empty@2x.png')}
+          secondImage={require('./../Images/favorite_full@2x.png')}/>
       </View>
     );
   }
