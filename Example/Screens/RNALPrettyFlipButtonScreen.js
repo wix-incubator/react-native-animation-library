@@ -5,7 +5,8 @@ import {
   Text,
   View,
   Animated,
-  Switch
+  Switch,
+  TextInput
 } from 'react-native';
 import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
 import {RNALPrettyFlipButton} from '../../src';
@@ -15,7 +16,8 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
-      noiseMakerIsOn: false
+      noiseMakerIsOn: false,
+      text: "kkk"
     };
   }
 
@@ -31,7 +33,6 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
   }
 
   _onSwitchChanged(val) {
-    console.log('_onSwitchChanged', val);
     this.setState({noiseMakerIsOn: val});
   }
 
@@ -43,17 +44,37 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
     }
   }
 
+  _onTextChanged(text) {
+    this.setState({text});
+
+  }
+
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex:1, justifyContent: 'center',alignItems: 'center', flexDirection: 'row'}}>
+
+
+        <View>
+          <TextInput
+            onChangeText={(text) => this._onTextChanged(text)}
+            value={this.state.text}
+            placeholder={"yyyyyy"}
+            style={{ backgroundColor: 'lightgray', height: 30, width: 150}}
+          />
+        </View>
+        <View>
+          <RNALPrettyFlipButton
+            firstState={{text: ' Send', style:{fontSize : 28, color: 'purple'}}}
+            secondState={{image: require('../Images/CameraIcon.png')}}
+          />
+        </View>
         <RNALPrettyFlipButton
-          firstState={{image: require('../Images/CameraIcon.png')}}
-          secondState={{image: require('../Images/SendIcon.png')}}
+          firstState={{image: require('../Images/SendIcon.png')}}
+          secondState={{image: require('../Images/CameraIcon.png')}}
         />
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

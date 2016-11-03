@@ -15,14 +15,12 @@ export default class RNALPrettyFlipButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      presentedImage: this.props.firstState.image,
+      presentedObject: this.props.firstState,
       scaleValue: new Animated.Value(1)
     }
   }
 
   _onPressButton() {
-    //const image = this.state.presentedImage === this.props.firstState.image ? this.props.secondState.image : this.props.firstState.image
-    //this.setState({presentedImage: image});
 
     Animated.sequence([
       Animated.timing(
@@ -36,7 +34,7 @@ export default class RNALPrettyFlipButton extends Component {
       Animated.timing(
         this.state.scaleValue,
         {
-          duration: 100,
+          duration: 80,
           toValue: 0.1,
           easing: Easing.linear
         }
@@ -45,16 +43,17 @@ export default class RNALPrettyFlipButton extends Component {
   }
 
   _swapImages() {
-    const image = this.state.presentedImage === this.props.firstState.image ? this.props.secondState.image : this.props.firstState.image
-    this.setState({presentedImage: image});
 
-    //console.error(image);
+      const newPresentedObject = this.state.presentedObject === this.props.firstState ? this.props.secondState : this.props.firstState
+      this.setState({presentedObject: newPresentedObject});
+
+
 
     Animated.sequence([
       Animated.timing(
         this.state.scaleValue,
         {
-          duration: 100,
+          duration: 60,
           toValue: 1,
           easing: Easing.linear
         }
@@ -78,19 +77,46 @@ export default class RNALPrettyFlipButton extends Component {
     ]).start();
   }
 
+  _renderContent() {
+    if (this.state.presentedObject.image) {
+      return this._renderImage();
+    } else {
+      return this._renderText();
+    }
+  }
+
+  _renderImage() {
+    return (
+      <Animated.Image
+        source={this.state.presentedObject.image}
+        resizeMode={Image.resizeMode.center}
+        style={{
+          transform: [
+            {scale: this.state.scaleValue},
+          ]
+        }}
+      />
+    )
+  }
+
+  _renderText() {
+    return (
+      <Animated.Text
+        style={[this.state.presentedObject.style, {
+          transform: [
+            {scale: this.state.scaleValue},
+          ]
+        }]}>
+        {this.state.presentedObject.text}
+      </Animated.Text>
+    )
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style={this.props.style}>
         <TouchableOpacity onPress={() => this._onPressButton()}>
-          <Animated.Image
-            source={this.state.presentedImage}
-            resizeMode={Image.resizeMode.center}
-            style={{
-              transform: [                        // `transform` is an ordered array
-                {scale: this.state.scaleValue},  // Map `bounceValue` to `scale`
-              ]
-            }}
-          />
+          {this._renderContent()}
         </TouchableOpacity>
       </View>
     )
@@ -99,21 +125,5 @@ export default class RNALPrettyFlipButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, flexDirection: 'row', backgroundColor: 'lightblue', justifyContent: 'center', alignItems: 'center'
-  },
-  switchContainer: {
-  },
-  contentContainer: {
-    backgroundColor: 'transparent',
-    zIndex: 10,
-    marginRight: 20
-  },
-  switchElement: {
-    position: 'relative', zIndex: 100, borderColor: '#ccc', borderWidth: 1, borderRadius: 15.5
-  },
-  switchBackground: {
-    position: 'absolute', backgroundColor: '#3899ec', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1,
-    borderRadius: 20,
-  }
+
 });
