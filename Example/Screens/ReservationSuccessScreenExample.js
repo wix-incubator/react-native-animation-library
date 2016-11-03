@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Animated,
+  Easing,
   Switch,
   TouchableHighlight,
   LayoutAnimation
@@ -18,7 +19,23 @@ export class ReservationSuccessScreenExample extends Component {
     this.state = {
       showingSuccessScreen: false,
       closedSuccessScreen: false,
+      successScaleValue: new Animated.Value(0),
     };
+  }
+
+  componentWillMount() {
+    LayoutAnimation.configureNext({
+      duration: 400,
+      create: {
+        type: LayoutAnimation.Types.spring,
+        property: LayoutAnimation.Properties.scaleXY,
+        springDamping: 0.7,
+      },
+      update: {
+        type: LayoutAnimation.Types.spring,
+        springDamping: 0.7,
+      },
+    });
   }
 
   _onSwitchChanged(val) {
@@ -53,22 +70,18 @@ export class ReservationSuccessScreenExample extends Component {
   }
 
   showReservationSuccess() {
-    LayoutAnimation.configureNext({
-      duration: 400,
-      create: {
-        type: LayoutAnimation.Types.spring,
-        property: LayoutAnimation.Properties.scaleXY,
-        springDamping: 0.7,
-      },
-      update: {
-        type: LayoutAnimation.Types.spring,
-        springDamping: 0.7,
-      },
-    });
-
     this.setState({
       showingSuccessScreen: true
     });
+
+    Animated.timing(
+      this.state.successScaleValue,
+      {
+        duration: 400,
+        toValue: 1,
+        easing: Easing.elastic(1)
+      }
+    ).start();
   }
 
   goToReservationCalendar() {
@@ -86,20 +99,32 @@ export class ReservationSuccessScreenExample extends Component {
     this.setState({
       showingSuccessScreen: false
     });
+
+    Animated.timing(
+      this.state.successScaleValue,
+      {
+        duration: 400,
+        toValue: 0,
+        easing: Easing.elastic(1)
+      }
+    ).start();
   }
 
   renderScreen() {
     return (
-      <View style={{
+      <Animated.View style={{
             flex: 1,
             justifyContent: 'center',
             alignItems: 'stretch',
-            backgroundColor: '#F5FCFF',
             position: 'relative',
-            zIndex: this.state.showingSuccessScreen ? 10 : -10
+            zIndex: (this.state.showingSuccessScreen || this.state.closedSuccessScreen) ? 10 : -10,
+            opacity: this.state.successScaleValue,
+            transform: [
+              {scale: this.state.successScaleValue}
+            ]
           }}>
-        {this.state.showingSuccessScreen ? <ReservationSuccessScreen onSuccessDone={this.onSuccessDone.bind(this)} /> : null}
-      </View>
+        <ReservationSuccessScreen showAnimation={this.state.showingSuccessScreen} onSuccessDone={this.onSuccessDone.bind(this)} />
+      </Animated.View>
     );
   }
 
@@ -107,7 +132,7 @@ export class ReservationSuccessScreenExample extends Component {
     if(this.state.showingSuccessScreen || this.state.closedSuccessScreen) {
       return null;
     }
-    
+
     return (
       <View style={{
         position: 'absolute',

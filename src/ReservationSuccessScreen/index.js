@@ -28,6 +28,12 @@ export default class ReservationSuccessScreen extends Component {
     this.animateStuff();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.showAnimation != nextProps.showAnimation) {
+      this.animateStuff();
+    }
+  }
+
   animateStuff() {
     this.state.imageOpacityValue.setValue(0);
     this.state.titleFadeAnim.setValue(0);
