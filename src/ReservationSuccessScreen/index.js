@@ -13,58 +13,91 @@ export default class ReservationSuccessScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bounceValue: new Animated.Value(0.85),
-      opacityValue: new Animated.Value(0),
+      // imageBounceValue: new Animated.Value(1.3),
+      imageOpacityValue: new Animated.Value(0),
+      titleFadeAnim: new Animated.Value(0),
+      contentFadeAnim: new Animated.Value(0),
     };
   }
 
   dismiss() {
-    this.animateImage();
+    this.animateStuff();
   }
 
   componentDidMount() {
-    this.animateImage();
+    this.animateStuff();
   }
 
-  animateImage() {
-    this.state.bounceValue.setValue(0.75);
-    this.state.opacityValue.setValue(0);
+  animateStuff() {
+    this.state.imageOpacityValue.setValue(0);
+    this.state.titleFadeAnim.setValue(0);
+    this.state.contentFadeAnim.setValue(0);
 
-    Animated.parallel([
-      Animated.spring(
-        this.state.bounceValue,
+    Animated.sequence([
+      Animated.timing(
+        this.state.imageOpacityValue,
         {
-          duration: 1000,
+          duration: 300,
           toValue: 1,
-          friction: 2,
+          easing: Easing.elastic(1.3)
         }
       ),
       Animated.timing(
-        this.state.opacityValue,
+        this.state.titleFadeAnim,
         {
-          duration: 400,
+          duration: 300,
           toValue: 1,
-          easing: Easing.linear
+          easing: Easing.elastic(1.3)
         }
-      )
+      ),
+      Animated.timing(
+        this.state.contentFadeAnim,
+        {
+          duration: 300,
+          toValue: 1,
+          easing: Easing.elastic(1)
+        }
+      ),
     ]).start();
-
-
   }
 
   renderMessage() {
+    this.anim = this.anim || new Animated.Value(100);
     return (
       <View style={styles.container}>
         <Animated.Image source={require('./img/confirm.png')} style={{
-          opacity: this.state.opacityValue,
+          opacity: this.state.imageOpacityValue,
           transform: [
-            {scale: this.state.bounceValue},
+            {translateY: this.state.imageOpacityValue.interpolate({
+              inputRange: [0, 1],
+              outputRange: [30, 0]
+            })},
           ]
         }}
         />
-        <Text style={styles.title}>Your Reservation was Saved</Text>
-        <Text style={styles.message}>A confirmation email with all the details was sent to your guest</Text>
-        <TouchableOpacity onPress={this.dismiss.bind(this)}><Text style={styles.button}>Done</Text></TouchableOpacity>
+        <Animated.View style={{
+          opacity: this.state.titleFadeAnim,
+          transform: [
+            {translateY: this.state.titleFadeAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [20, 0]
+            })},
+          ]
+        }}>
+          <Animated.Text style={styles.title}>Your Reservation was Saved</Animated.Text>
+        </Animated.View>
+        <Animated.View style={{
+          opacity: this.state.contentFadeAnim,
+          transform: [
+            {translateY: this.state.contentFadeAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [20, 0]
+            })},
+          ]
+        }}>
+          <Text style={styles.message}>A confirmation email with all the details was sent to your guest</Text>
+          <TouchableOpacity style={{alignSelf: 'center'}} onPress={this.dismiss.bind(this)}><Text style={styles.button}>Done</Text></TouchableOpacity>
+        </Animated.View>
       </View>
     );
   }
