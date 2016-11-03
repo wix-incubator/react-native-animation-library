@@ -10,7 +10,12 @@ import {
   AlertIOS
 } from 'react-native';
 
-import {RNALPrettyBoxSwitchScreen, RNALPrettyFlipButtonScreen, GroupChatScreen} from './Screens';
+import {
+  RNALPrettyBoxSwitchScreen,
+  RNALPrettyFlipButtonScreen,
+  GroupChatScreen,
+  ReservationSuccessScreenExample
+} from './Screens';
 
 export default class App extends Component {
 
@@ -47,6 +52,11 @@ export default class App extends Component {
           </Text>
         </TouchableOpacity>
 
+        <TouchableOpacity onPress={() => this.setState({example: ReservationSuccessScreenExample})}>
+          <Text style={styles.buttonText}>
+            Reservation Success Screen
+          </Text>
+        </TouchableOpacity>
 
       </View>
 
