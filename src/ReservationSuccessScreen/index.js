@@ -37,26 +37,26 @@ export default class ReservationSuccessScreen extends Component {
       Animated.timing(
         this.state.imageOpacityValue,
         {
-          duration: 300,
+          duration: 400,
           toValue: 1,
-          easing: Easing.elastic(1.3)
+          easing: Easing.elastic(1)
         }
       ),
       Animated.timing(
         this.state.titleFadeAnim,
         {
-          duration: 300,
+          duration: 400,
           toValue: 1,
-          easing: Easing.elastic(1.3),
+          easing: Easing.elastic(0.9),
           delay: 100,
         }
       ),
       Animated.timing(
         this.state.contentFadeAnim,
         {
-          duration: 300,
+          duration: 400,
           toValue: 1,
-          easing: Easing.elastic(1),
+          easing: Easing.elastic(0.7),
           delay: 200
         }
       ),
