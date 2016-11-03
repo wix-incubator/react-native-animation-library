@@ -36,11 +36,21 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
   }
 
   _renderNoiseMaker() {
-    if (this.state.noiseMakerIsOn) {
-      return (
-        <BridgeNoiseMaker/>
-      )
-    }
+    const noiseMaker = this.state.noiseMakerIsOn ? <BridgeNoiseMaker/> : null;
+    return (
+      <View style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}>
+        <Switch
+          value={this.state.noiseMakerIsOn}
+          onValueChange={(val)=> this._onSwitchChanged(val)}
+        />
+        {noiseMaker}
+      </View>
+    )
   }
 
   render() {
@@ -49,33 +59,9 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
       <View style={{flex: 1}}>
         <RNALPrettyBoxSwitch/>
 
-        <Switch
-          value={this.state.noiseMakerIsOn}
-          onValueChange={(val)=> this._onSwitchChanged(val)}
-        />
-
         {this._renderNoiseMaker()}
       </View>
     );
   }
 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
