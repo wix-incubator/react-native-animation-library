@@ -33,7 +33,7 @@ export default class ReservationSuccessScreen extends Component {
     this.state.titleFadeAnim.setValue(0);
     this.state.contentFadeAnim.setValue(0);
 
-    Animated.sequence([
+    Animated.parallel([
       Animated.timing(
         this.state.imageOpacityValue,
         {
@@ -47,7 +47,8 @@ export default class ReservationSuccessScreen extends Component {
         {
           duration: 300,
           toValue: 1,
-          easing: Easing.elastic(1.3)
+          easing: Easing.elastic(1.3),
+          delay: 100,
         }
       ),
       Animated.timing(
@@ -55,7 +56,8 @@ export default class ReservationSuccessScreen extends Component {
         {
           duration: 300,
           toValue: 1,
-          easing: Easing.elastic(1)
+          easing: Easing.elastic(1),
+          delay: 200
         }
       ),
     ]).start();
