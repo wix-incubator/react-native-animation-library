@@ -14,8 +14,11 @@ import {
   RNALPrettyBoxSwitchScreen,
   RNALPrettyFlipButtonScreen,
   GroupChatScreen,
-  ReservationSuccessScreenExample
+  ReservationSuccessScreenExample,
+  RNALBounceButtonScreen,
+  RNALBlogExample
 } from './Screens';
+
 
 export default class App extends Component {
 
@@ -55,6 +58,18 @@ export default class App extends Component {
         <TouchableOpacity onPress={() => this.setState({example: ReservationSuccessScreenExample})}>
           <Text style={styles.buttonText}>
             Reservation Flow
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.setState({example: RNALBounceButtonScreen})}>
+          <Text style={styles.buttonText}>
+            Bounce Button
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.setState({example: RNALBlogExample})}>
+          <Text style={styles.buttonText}>
+            Blog Example
           </Text>
         </TouchableOpacity>
 

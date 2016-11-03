@@ -5,12 +5,11 @@ import App from './Example/App';
 
 
 export default class RNAnimationLib extends Component {
-  render(){
+  render() {
     return (
       <App/>
     )
   }
-
 }
 
 

@@ -44,8 +44,8 @@ export default class RNALPrettyFlipButton extends Component {
 
   _swapImages() {
 
-      const newPresentedObject = this.state.presentedObject === this.props.firstState ? this.props.secondState : this.props.firstState
-      this.setState({presentedObject: newPresentedObject});
+    const newPresentedObject = this.state.presentedObject === this.props.firstState ? this.props.secondState : this.props.firstState
+    this.setState({presentedObject: newPresentedObject});
 
 
 
