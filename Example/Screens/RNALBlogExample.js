@@ -9,8 +9,7 @@ import {
   TextInput,
   Image
 } from 'react-native';
-import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
-import {RNALBounceButton} from '../../src';
+import {RNALBounceButton} from 'react-native-animation-library';
 
 export default class RNALBlogExample extends Component {
   constructor(props) {

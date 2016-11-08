@@ -8,8 +8,7 @@ import {
   Switch,
   TextInput
 } from 'react-native';
-import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
-import {RNALPrettyFlipButton} from '../../src';
+import {RNALPrettyFlipButton} from 'react-native-animation-library';
 
 export default class RNALPrettyBoxSwitchScreen extends Component {
   constructor(props) {
@@ -36,13 +35,6 @@ export default class RNALPrettyBoxSwitchScreen extends Component {
     this.setState({noiseMakerIsOn: val});
   }
 
-  _renderNoiseMaker() {
-    if (this.state.noiseMakerIsOn) {
-      return (
-        <BridgeNoiseMaker/>
-      )
-    }
-  }
 
   _onTextChanged(text) {
     this.setState({text});

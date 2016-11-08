@@ -8,8 +8,7 @@ import {
   Switch,
   TextInput
 } from 'react-native';
-import BridgeNoiseMaker from '../../src/BridgeNoiseMaker';
-import {RNALBounceButton} from '../../src';
+import {RNALBounceButton} from 'react-native-animation-library';
 
 export default class RNALBounceButtonScreen extends Component {
   constructor(props) {
