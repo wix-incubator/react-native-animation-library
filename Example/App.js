@@ -16,8 +16,10 @@ import {
   GroupChatScreen,
   ReservationSuccessScreenExample,
   RNALBounceButtonScreen,
-  RNALBlogExample
+  RNALBlogExample,
 } from './Screens';
+
+import {FlipAnimatedImage, RNALPrettySwitch} from 'react-native-animation-library';
 
 
 export default class App extends Component {
@@ -25,8 +27,13 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      example: undefined
+      example: undefined,
+      starIsSelected: false
     };
+  }
+
+  _onPress() {
+    console.error('_onPress from Bounce Button Screen');
   }
 
   render() {
@@ -61,17 +68,17 @@ export default class App extends Component {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.setState({example: RNALBounceButtonScreen})}>
-          <Text style={styles.buttonText}>
-            Bounce Button
-          </Text>
+        <RNALPrettySwitch/>
+
+
+        <TouchableOpacity onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} style={{margin: 30}}>
+          <FlipAnimatedImage style={{justifyContent: 'center', alignItems: 'center'}}
+                             isSelected={this.state.starIsSelected}
+                             unSelectedImage={require('./Images/favorite_empty.png')}
+                             selectedImage={require('./Images/favorite_full.png')}
+          />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.setState({example: RNALBlogExample})}>
-          <Text style={styles.buttonText}>
-            Blog Example
-          </Text>
-        </TouchableOpacity>
 
       </View>
 
