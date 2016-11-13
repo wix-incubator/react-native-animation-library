@@ -71,11 +71,12 @@ export default class App extends Component {
         <RNALPrettySwitch/>
 
 
-        <TouchableOpacity onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} style={{margin: 30}}>
+        <TouchableOpacity activeOpacity={0.7} onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} style={{margin: 30}}>
           <FlipAnimatedImage style={{justifyContent: 'center', alignItems: 'center'}}
                              isSelected={this.state.starIsSelected}
                              unSelectedImage={require('./Images/favorite_empty.png')}
                              selectedImage={require('./Images/favorite_full.png')}
+                             duration={{bounceOut: 50, bounceIn: 100}}
           />
         </TouchableOpacity>
 

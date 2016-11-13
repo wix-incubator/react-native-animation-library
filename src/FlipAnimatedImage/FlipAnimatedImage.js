@@ -23,30 +23,34 @@ export default class FlipAnimatedImage extends Component {
       unSelectedImage: this.props.unSelectedImage,
       scaleValue: new Animated.Value(1),
       opacityValue: new Animated.Value(1),
-      timing: this.props.timing
+      duration: this.props.duration.bounceOut && this.props.duration.bounceIn ? this.props.duration : {bounceOut: 150, bounceIn: 100}
     }
   }
 
   _selectedChanged(isSelected) {
 
-    Animated.parallel([
-      Animated.sequence([
+
+    Animated.sequence([
+      Animated.timing(
+        this.state.scaleValue,
+        {
+          duration: this.state.duration.bounceOut,
+          toValue: 1.2
+        }
+      ),
+      Animated.parallel([
         Animated.timing(
           this.state.opacityValue,
           {
-            duration: 150,
-            toValue: 0.2,
-            easing: Easing.linear
+            duration: this.state.duration.bounceIn,
+            toValue: 0.1,
           }
         ),
-      ]),
-      Animated.sequence([
         Animated.timing(
           this.state.scaleValue,
           {
-            duration: 150,
-            toValue: 1.2,
-            easing: Easing.linear
+            duration: this.state.duration.bounceIn,
+            toValue: 0.2
           }
         )
       ])
@@ -58,31 +62,26 @@ export default class FlipAnimatedImage extends Component {
     this.setState({isSelected: isSelected});
 
     Animated.parallel([
-      Animated.sequence([
-        Animated.timing(
-          this.state.opacityValue,
-          {
-            duration: 100,
-            toValue: 1,
-            easing: Easing.linear
-          }
-        )
-      ]),
+      Animated.timing(
+        this.state.opacityValue,
+        {
+          duration: this.state.duration.bounceOut+this.state.duration.bounceIn,
+          toValue: 1,
+        }
+      ),
       Animated.sequence([
         Animated.timing(
           this.state.scaleValue,
           {
-            duration: 100,
-            toValue: 0.9,
-            easing: Easing.linear
+            duration: this.state.duration.bounceOut+this.state.duration.bounceIn,
+            toValue: 1.2
           }
         ),
         Animated.timing(
           this.state.scaleValue,
           {
-            duration: 50,
-            toValue: 1,
-            easing: Easing.linear
+            duration: this.state.duration.bounceOut,
+            toValue: 1
           }
         )
       ])
@@ -99,7 +98,7 @@ export default class FlipAnimatedImage extends Component {
       <Animated.Image
         {...this.props}
         source={this.state.isSelected ? this.props.selectedImage : this.props.unSelectedImage}
-        style={[...inheritStyle, {
+        style={[inheritStyle, {
           transform: [
             {scale: this.state.scaleValue},
           ],
