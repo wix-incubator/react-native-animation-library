@@ -13,16 +13,15 @@ export default class PrettySwitch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      switchValue: this.props.value,
       animatedBackgroundScaleSize: new Animated.Value(0),
       animatedOpacityValue: new Animated.Value(1),
       duration: this.props.duration ? this.props.duration : 300,
     }
   }
 
-  _onValueChanged(val) {
-    this.setState({switchValue: val});
-    val ? this.animateTo(val) : this.resetAnimation();
+  _onValueChange(val) {
+    this._updateValueChange(val);
+    val ? this.animateTo(val) : this.resetAnimation(val);
   }
 
   resetAnimation(val) {
@@ -30,7 +29,7 @@ export default class PrettySwitch extends Component {
       animatedBackgroundScaleSize: new Animated.Value(0),
       animatedOpacityValue: new Animated.Value(1),
     })
-    this._onAnimationCompleted(val);
+    this._updateValueChange(val);
   }
 
   animateTo(val) {
@@ -39,34 +38,35 @@ export default class PrettySwitch extends Component {
         this.state.animatedBackgroundScaleSize,
         {
           duration: this.state.duration,
-          toValue: val,
+          toValue: 30,
           easing: Easing.linear
         }
       ),
       Animated.timing(
         this.state.animatedOpacityValue,
         {
-          duration: this.state.switchValue ? 250 : 300,
-          toValue: this.state.switchValue ? 1 : 0,
+          duration: this.props.value ? 250 : 300,
+          toValue: this.state.value ? 1 : 0,
           easing: Easing.linear
         }
       )
-    ]).start(() => this._onAnimationCompleted(val));
+    ]).start(() => this._updateValueChange(val));
   }
 
-  _onAnimationCompleted(val) {
-    this.props.onValueChanged(val);
+  _updateValueChange(val) {
+    if (this.props.onValueChange) {
+      this.props.onValueChange(val);
+    }
   }
 
   render() {
+    console.warn('kkk', this.props.value)
     return (
       <View style={styles.switchContainer}>
         <Switch
-          value={this.state.switchValue}
-          onTintColor="#4eb7f5"
-          tintColor="#b6c1cd"
-          onValueChange={(val)=> this._onValueChanged(val)}
-          style={styles.switchElement}
+          {...this.props}
+          onValueChange={(val)=> this._onValueChange(val)}
+          style={[this.props.style, styles.switchElement]}
         />
         <View style={styles.switchTintBackground} />
         <View style={styles.switchBackground}>

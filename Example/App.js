@@ -19,7 +19,7 @@ import {
   RNALBlogExample,
 } from './Screens';
 
-import {FlipAnimatedImage, RNALPrettySwitch} from 'react-native-animation-library';
+import {FlipAnimatedImage, PrettySwitch} from 'react-native-animation-library';
 
 
 export default class App extends Component {
@@ -28,7 +28,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       example: undefined,
-      starIsSelected: false
+      starIsSelected: false,
+      prettySwitchValue: false
     };
   }
 
@@ -68,7 +69,13 @@ export default class App extends Component {
           </Text>
         </TouchableOpacity>
 
-        <RNALPrettySwitch/>
+        <PrettySwitch
+          value={this.state.prettySwitchValue}
+          onValueChange={(val) => this.setState({prettySwitchValue: val})}
+          duration={500}
+          onTintColor="#4eb7f5"
+          tintColor="#b6c1cd"
+        />
 
 
         <TouchableOpacity activeOpacity={0.7} onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} style={{margin: 30}}>

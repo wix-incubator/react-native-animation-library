@@ -1,12 +1,12 @@
 import RNALPrettyBoxSwitch from './RNALPrettyBoxSwitch/RNALPrettyBoxSwitch';
 import RNALPrettyFlipButton from './RNALPrettyFlipButton/RNALPrettyFlipButton';
 import FlipAnimatedImage from './FlipAnimatedImage/FlipAnimatedImage';
-import RNALPrettySwitch from './RNALPrettySwitch/RNALPrettySwitch';
+import PrettySwitch from './PrettySwitch/PrettySwitch';
 
 
 export {
   RNALPrettyBoxSwitch,
   RNALPrettyFlipButton,
-  RNALPrettySwitch,
+  PrettySwitch,
   FlipAnimatedImage
 };
