@@ -3,7 +3,7 @@ Animation library built in `JavaScript` only
 
 ## Components
 
-### FlipAnimatedImage
+### `FlipAnimatedImage`
 #### API
 
 Props | Type | Description
