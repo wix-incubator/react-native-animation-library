@@ -16,13 +16,17 @@ Props | Type | Description
 
 #### Example
 ```
-<TouchableOpacity activeOpacity={0.7} onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} style={{margin: 30}}>
-          <FlipAnimatedImage style={{justifyContent: 'center', alignItems: 'center'}}
-                             isSelected={this.state.starIsSelected}
-                             unSelectedImage={require('<SELECTED_IMAGE>')}
-                             selectedImage={require('<UNSELECTED_IMAGE>')}
-                             duration={{bounceOut: 50, bounceIn: 100}}
-          />
+<TouchableOpacity 
+    activeOpacity={0.7} 
+    onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} 
+    style={{margin: 30}}>
+    
+    <FlipAnimatedImage style={{justifyContent: 'center', alignItems: 'center'}}
+                       isSelected={this.state.starIsSelected}
+                       unSelectedImage={require('<SELECTED_IMAGE>')}
+                       selectedImage={require('<UNSELECTED_IMAGE>')}
+                       duration={{bounceOut: 50, bounceIn: 100}}
+    />
 </TouchableOpacity>
 ```
 
