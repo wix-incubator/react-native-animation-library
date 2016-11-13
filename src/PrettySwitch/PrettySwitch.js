@@ -60,7 +60,6 @@ export default class PrettySwitch extends Component {
   }
 
   render() {
-    console.warn('kkk', this.props.value)
     return (
       <View style={styles.switchContainer}>
         <Switch
@@ -71,12 +70,12 @@ export default class PrettySwitch extends Component {
         <View style={styles.switchTintBackground} />
         <View style={styles.switchBackground}>
           <Animated.View style={[
-          styles.switchBackgroundBubble,
-          {
-            opacity: this.state.animatedOpacityValue,
-            transform: [{ scale: this.state.animatedBackgroundScaleSize }]
-          }
-        ]} />
+            styles.switchBackgroundBubble,
+            {
+              opacity: this.state.animatedOpacityValue,
+              transform: [{ scale: this.state.animatedBackgroundScaleSize }]
+            }
+          ]} />
         </View>
       </View>
     )

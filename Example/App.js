@@ -21,7 +21,6 @@ import {
 
 import {FlipAnimatedImage, PrettySwitch} from 'react-native-animation-library';
 
-
 export default class App extends Component {
 
   constructor(props) {
@@ -31,10 +30,6 @@ export default class App extends Component {
       starIsSelected: false,
       prettySwitchValue: false
     };
-  }
-
-  _onPress() {
-    console.error('_onPress from Bounce Button Screen');
   }
 
   render() {
