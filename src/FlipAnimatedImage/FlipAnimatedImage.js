@@ -89,6 +89,7 @@ export default class FlipAnimatedImage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.isSelected === this.state.isSelected) return;
     this._selectedChanged(nextProps.isSelected);
   }
 
