@@ -57,6 +57,7 @@ export default class AnimatedListViewScreen extends Component {
           dataSource={this.state.dataSource}
           renderRow={(rowID) => this.renderRow(rowID)}
           initialListSize={20}
+          animationOption={{duration: 2000, initialOpacity: .2, offsetY: 100}}
         />
       </View>
     );

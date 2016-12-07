@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -7,20 +8,21 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-var EventEmitter = require('EventEmitter');
 
-const duration = 400;
 const useNativeDriver = true;
-
 
 export default class AnimatedListViewItem extends Component {
   constructor(props) {
     super(props);
+    const offsetY = _(this.props.animationOption).get('offsetY', 100);
+    const initialOpacity = _(this.props.animationOption).get('initialOpacity', .4);
+    const duration = _(this.props.animationOption).get('duration', 400);
+
     this.performAnimation = this.performAnimation.bind(this);
     this.state = {
-      animatedValue: new Animated.Value(100),
-      fadeAnimation: new Animated.Value(.3)
-
+      animatedValue: new Animated.Value(offsetY),
+      fadeAnimation: new Animated.Value(initialOpacity),
+      duration
     };
   }
 
@@ -40,7 +42,7 @@ export default class AnimatedListViewItem extends Component {
         this.state.fadeAnimation,
         {
           toValue: 1,
-          duration,
+          duration: this.state.duration,
           useNativeDriver
         }
       ),
@@ -49,7 +51,7 @@ export default class AnimatedListViewItem extends Component {
         this.state.animatedValue,
         {
           toValue: 0,
-          duration,
+          duration: this.state.duration,
           useNativeDriver
         }
       )

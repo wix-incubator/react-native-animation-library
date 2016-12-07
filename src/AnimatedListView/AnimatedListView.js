@@ -36,7 +36,7 @@ export default class AnimatedListView extends Component {
         rowID={rowID}
         key={rowID}
         events={this.eventEmitter}
-        animation={this.props.animation}
+        animationOption={this.props.animationOption}
       >
         {this.props.renderRow(rowData, sectionID, rowID, highlightRow)}
       </AnimatedListViewItem>
