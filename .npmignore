@@ -1,0 +1,10 @@
+ios/
+android/
+index.ios.js/
+index.android.js/
+app.js/
+Screens/
+Images/
+node_modules/
+test/
+Example/
