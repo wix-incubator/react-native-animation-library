@@ -57,7 +57,7 @@ export default class AnimatedListViewScreen extends Component {
           dataSource={this.state.dataSource}
           renderRow={(rowID) => this.renderRow(rowID)}
           initialListSize={20}
-          animationOption={{duration: 2000, initialOpacity: .2, offsetY: 100}}
+          animationOption={{duration: 800, initialOpacity: .0, offsetY: 200}}
         />
       </View>
     );
@@ -65,7 +65,7 @@ export default class AnimatedListViewScreen extends Component {
 }
 
 function getRandomColor() {
-  //return '#FFC952';
+  return '#FFC952';
   var letters = '0123456789ABCDEF';
   var color = '#';
   for (var i = 0; i < 6; i++ ) {

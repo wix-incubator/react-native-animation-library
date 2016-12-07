@@ -36,23 +36,25 @@ export default class AnimatedListViewItem extends Component {
   }
 
   performAnimation() {
+    Animated.stagger(this.props.rowID * 120, [
 
-    Animated.stagger(this.props.rowID * 40, [
       Animated.timing(
         this.state.fadeAnimation,
         {
           toValue: 1,
           duration: this.state.duration,
-          useNativeDriver
+          useNativeDriver,
         }
       ),
 
       Animated.timing(
         this.state.animatedValue,
         {
+          easing: Easing.inOut(Easing.quad),
           toValue: 0,
           duration: this.state.duration,
           useNativeDriver
+
         }
       )
     ]).start();
