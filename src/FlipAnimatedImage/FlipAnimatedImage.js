@@ -12,8 +12,9 @@ import {
 } from 'react-native';
 
 
+const useNativeDriver = true;
+
 export default class FlipAnimatedImage extends Component {
-  mixins: [Touchable.Mixin];
 
   constructor(props) {
     super(props);
@@ -35,7 +36,8 @@ export default class FlipAnimatedImage extends Component {
         this.state.scaleValue,
         {
           duration: this.state.duration.bounceOut,
-          toValue: 1.2
+          toValue: 1.2,
+          useNativeDriver
         }
       ),
       Animated.parallel([
@@ -44,13 +46,15 @@ export default class FlipAnimatedImage extends Component {
           {
             duration: this.state.duration.bounceIn,
             toValue: 0.1,
+            useNativeDriver
           }
         ),
         Animated.timing(
           this.state.scaleValue,
           {
             duration: this.state.duration.bounceIn,
-            toValue: 0.2
+            toValue: 0.2,
+            useNativeDriver
           }
         )
       ])
@@ -67,6 +71,7 @@ export default class FlipAnimatedImage extends Component {
         {
           duration: this.state.duration.bounceOut+this.state.duration.bounceIn,
           toValue: 1,
+          useNativeDriver
         }
       ),
       Animated.sequence([
@@ -74,14 +79,16 @@ export default class FlipAnimatedImage extends Component {
           this.state.scaleValue,
           {
             duration: this.state.duration.bounceOut+this.state.duration.bounceIn,
-            toValue: 1.2
+            toValue: 1.2,
+            useNativeDriver
           }
         ),
         Animated.timing(
           this.state.scaleValue,
           {
             duration: this.state.duration.bounceOut,
-            toValue: 1
+            toValue: 1,
+            useNativeDriver
           }
         )
       ])

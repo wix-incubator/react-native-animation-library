@@ -5,22 +5,27 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
+  "main": "src/index.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "dependencies": {
-    "react": "15.3.2",
-    "react-native": "0.36.1",
-    "react-native-svg": "^4.3.1"
+  "peerDependencies": {
+    "react": "15.4.1",
+    "react-native": "0.38.0"
   },
   "jest": {
     "preset": "jest-react-native"
   },
   "devDependencies": {
+    "react": "15.4.1",
+    "react-native": "0.38.0",
     "babel-jest": "16.0.0",
     "babel-preset-react-native": "1.9.0",
     "jest": "16.0.2",
     "jest-react-native": "16.0.0",
     "react-test-renderer": "15.3.2"
+  },
+  "dependencies": {
+    "events": "^1.1.1"
   }
 }

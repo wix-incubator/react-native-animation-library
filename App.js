@@ -10,16 +10,9 @@ import {
   AlertIOS
 } from 'react-native';
 
-import {
-  RNALPrettyBoxSwitchScreen,
-  RNALPrettyFlipButtonScreen,
-  GroupChatScreen,
-  ReservationSuccessScreenExample,
-  RNALBounceButtonScreen,
-  RNALBlogExample,
-} from './Screens';
 
-import {FlipAnimatedImage, PrettySwitch} from 'react-native-animation-library';
+import {FlipAnimatedImage} from './src';
+import {AnimatedListViewScreen} from './Screens'
 
 export default class App extends Component {
 
@@ -40,37 +33,11 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
 
-        <TouchableOpacity onPress={() => this.setState({example: RNALPrettyBoxSwitchScreen})}>
+        <TouchableOpacity onPress={() => this.setState({example: AnimatedListViewScreen})}>
           <Text style={styles.buttonText}>
-            Pretty Box Switch
+            Animated List View Screen
           </Text>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => this.setState({example: RNALPrettyFlipButtonScreen})}>
-          <Text style={styles.buttonText}>
-            Pretty Flip Button
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => this.setState({example: GroupChatScreen})}>
-          <Text style={styles.buttonText}>
-            Group Chat Screen
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => this.setState({example: ReservationSuccessScreenExample})}>
-          <Text style={styles.buttonText}>
-            Reservation Flow
-          </Text>
-        </TouchableOpacity>
-
-        <PrettySwitch
-          value={this.state.prettySwitchValue}
-          onValueChange={(val) => this.setState({prettySwitchValue: val})}
-          duration={500}
-          onTintColor="#4eb7f5"
-          tintColor="#b6c1cd"
-        />
 
 
         <TouchableOpacity activeOpacity={0.7} onPress={() => this.setState({starIsSelected: !this.state.starIsSelected})} style={{margin: 30}}>
