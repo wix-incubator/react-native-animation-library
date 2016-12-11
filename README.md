@@ -8,7 +8,7 @@ Animation library built in `JavaScript` only
 
 Fade appearance `listView`
 
-<img src="https://github.com/wix/react-native-animation-library/Images/AnimatedListView.gif?raw=true" width="240">
+<img src="https://github.com/wix/react-native-animation-library/blob/master/Images/AnimatedListView.gif?raw=true" width="240">
 
 ####API
 
