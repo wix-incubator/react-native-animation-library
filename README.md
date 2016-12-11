@@ -22,6 +22,9 @@ Props | Type | Description
 
 
 ### `FlipAnimatedImage`
+
+<img src="https://github.com/wix/react-native-animation-library/blob/master/Images/starAnimation.gif?raw=true">
+
 #### API
 
 Props | Type | Description
