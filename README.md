@@ -1,12 +1,14 @@
 # React Native Animation Library 
 
-Animation library built in `JavaScript` only
+Animation library built in `JavaScript` only.
+All animation created with `Animated` API and boosted with `useNativeDriver` which uses the native animation by `RCTAnimation`.
 
 ## Components
 
 ### AnimatedListView
 
-Fade appearance `listView`
+Fade appearance `listView`. Based on `ListView` therefore all `ListView` props can be used. 
+
 
 <img src="https://github.com/wix/react-native-animation-library/blob/master/Images/AnimatedListView.gif?raw=true" width="240">
 
