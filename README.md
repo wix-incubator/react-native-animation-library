@@ -1,7 +1,25 @@
 # React Native Animation Library 
+
 Animation library built in `JavaScript` only
 
 ## Components
+
+### AnimatedListView
+
+Fade appearance `listView`
+
+<img src="https://github.com/wix/react-native-animation-library/Images/AnimatedListView.gif?raw=true" width="240">
+
+####API
+
+
+Props | Type | Description
+------ | ----- | -----
+`initialOpacity` | [Number] | Cell initial opacity, between 0-1 
+`offsetY` | [Number] | Cell Y offset 
+`cellAnimationDelay` |[Number]| Cell animation delay. Multiple `cell#` *  `cellAnimationDelay`
+`duration` | [Number] | The animation duration in milliseconds`[Number]`
+
 
 ### `FlipAnimatedImage`
 #### API

@@ -17,7 +17,8 @@ export default class AnimatedListView extends Component {
     super(props);
     this._renderRow = this._renderRow.bind(this);
     this.state = {
-      listViewKey: Date.now()
+      listViewKey: Date.now(),
+      scrolled: false // if scrolled the animation stops
     };
     this.originRenderRow = this.props.renderRow;
     this.eventEmitter = null;
@@ -31,32 +32,45 @@ export default class AnimatedListView extends Component {
 
 
   _renderRow(rowData, sectionID, rowID, highlightRow) {
+    const shouldAnimate = !this.state.scrolled;
+
     return (
       <AnimatedListViewItem
         rowID={rowID}
         key={rowID}
         events={this.eventEmitter}
-        animationOption={this.props.animationOption}
+        animationOption={{...this.props.animationOption, shouldAnimate}}
       >
         {this.props.renderRow(rowData, sectionID, rowID, highlightRow)}
       </AnimatedListViewItem>
     );
   }
 
+
   performAnimation() {
+    this.setState({scrolled: false});
     this.eventEmitter.emit('performAnimation', { someArg: 'argValue' });
     this.setState({listViewKey: Date.now()})
   }
 
+  _onScroll() {
+
+    if (!this.state.scrolled) {
+      this.setState({scrolled: true})
+    }
+    if (this.props.onScroll) {
+      this.props.onScroll();
+    }
+  }
+
   render() {
     return (
-      <Animated.View>
-        <ListView
-          key={this.state.listViewKey}
-          {...this.props}
-          renderRow={this._renderRow}
-        />
-      </Animated.View>
+      <ListView
+        key={this.state.listViewKey}
+        {...this.props}
+        renderRow={this._renderRow}
+        onScroll={() => this._onScroll()}
+      />
     );
   }
 }

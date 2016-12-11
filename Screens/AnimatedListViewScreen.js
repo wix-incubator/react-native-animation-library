@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {AnimatedListView} from './../src';
+import FlatColors from 'flat-colors';
 
 
 export default class AnimatedListViewScreen extends Component {
@@ -31,10 +32,10 @@ export default class AnimatedListViewScreen extends Component {
     };
   }
 
-  renderRow(rowID) {
+  renderRow(rowData) {
     return (
-      <View style={{flex: 1, alignItems: 'center', backgroundColor: getRandomColor(), padding: 50, margin: 10, marginBottom: 0}}>
-        <Text >{`row ${rowID}`}</Text>
+      <View style={{flex: 1, alignItems: 'center', backgroundColor: getRandomColor(), padding: 40, margin: 10, marginBottom: 0}}>
+        <Text >{`${rowData}`}</Text>
       </View>
     )
   }
@@ -56,8 +57,12 @@ export default class AnimatedListViewScreen extends Component {
           style={{backgroundColor: '#95a5a6'}}
           dataSource={this.state.dataSource}
           renderRow={(rowID) => this.renderRow(rowID)}
-          initialListSize={20}
-          animationOption={{duration: 800, initialOpacity: .0, offsetY: 200}}
+          animationOption={{
+            duration: 800,
+            initialOpacity: .0,
+            offsetY: 200,
+            cellAnimationDelay: 200}}
+          contentInset={{bottom: 10}}
         />
       </View>
     );
@@ -65,7 +70,8 @@ export default class AnimatedListViewScreen extends Component {
 }
 
 function getRandomColor() {
-  return '#FFC952';
+return '#e67e22';
+  return FlatColors()[3];
   var letters = '0123456789ABCDEF';
   var color = '#';
   for (var i = 0; i < 6; i++ ) {
