@@ -59,9 +59,10 @@ export default class AnimatedListViewScreen extends Component {
           renderRow={(rowID) => this.renderRow(rowID)}
           animationOption={{
             duration: 800,
-            initialOpacity: .0,
+            initialOpacity: 0,
             offsetY: 200,
             cellAnimationDelay: 200}}
+          avoidAnimation={false}
           contentInset={{bottom: 10}}
         />
       </View>

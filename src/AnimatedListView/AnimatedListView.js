@@ -35,6 +35,12 @@ export default class AnimatedListView extends Component {
   _renderRow(rowData, sectionID, rowID, highlightRow) {
     const shouldAnimate = !this.state.scrolled;
 
+    if (this.props.avoidAnimation) {
+      return (
+        this.props.renderRow(rowData, sectionID, rowID, highlightRow)
+      );
+    }
+
     return (
       <AnimatedListViewItem
         rowID={rowID}

@@ -14,13 +14,17 @@ Fade appearance `listView`. Based on `ListView` therefore all `ListView` props c
 
 ####API
 
+animationsOption `[Object]`
 
 Props | Type | Description
 ------ | ----- | -----
-`initialOpacity` | [Number] | Cell initial opacity, between 0-1 
-`offsetY` | [Number] | Cell Y offset 
-`cellAnimationDelay` |[Number]| Cell animation delay. Multiple `cell#` *  `cellAnimationDelay`
-`duration` | [Number] | The animation duration in milliseconds`[Number]`
+`initialOpacity` | [Number] | Cell initial opacity, between 0-1  // default is 0.4
+`offsetY` | [Number] | Cell Y offset // default is 100
+`cellAnimationDelay` |[Number]| Cell animation delay. Multiple `cell#` *  `cellAnimationDelay` // default is 200ms
+`duration` | [Number] | The animation duration in milliseconds`[Number]` // deafult is 800ms
+
+avoidAnimation `[Boolean]` // default is `false`
+
 
 
 ### `FlipAnimatedImage`
