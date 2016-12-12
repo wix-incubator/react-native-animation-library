@@ -21,8 +21,8 @@ export default class AnimatedListViewItem extends Component {
     const shouldAnimate = _(this.props.animationOption).get('shouldAnimate', true);
     const cellAnimationDelay =_(this.props.animationOption).get('cellAnimationDelay', 200);
 
-
     this.performAnimation = this.performAnimation.bind(this);
+    this.stopAnimation = this.stopAnimation.bind(this);
     this.state = {
       animatedValue: new Animated.Value(offsetY),
       fadeAnimation: new Animated.Value(initialOpacity),
@@ -35,12 +35,16 @@ export default class AnimatedListViewItem extends Component {
 
   componentDidMount() {
     this.props.events.on('performAnimation', this.performAnimation);
+    this.props.events.on('stopAnimation', this.stopAnimation);
     this.performAnimation();
   }
 
 
   componentWillUnmount() {
+    this.props.events.removeListener('performAnimation', this.performAnimation);
+    this.props.events.removeListener('stopAnimation', this.stopAnimation);
     this.props.events.removeAllListeners();
+    this.stopAnimation();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,6 +54,12 @@ export default class AnimatedListViewItem extends Component {
     }
 
     this.setState({shouldPerformAnimation: nextProps.shouldAnimate});
+  }
+
+  stopAnimation() {
+    this.state.fadeAnimation.stopAnimation();
+    this.state.animatedValue.stopAnimation();
+    this.setState({shouldPerformAnimation: false})
   }
 
   performAnimation() {

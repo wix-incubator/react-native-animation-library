@@ -16,6 +16,7 @@ export default class AnimatedListView extends Component {
   constructor(props) {
     super(props);
     this._renderRow = this._renderRow.bind(this);
+    this._onScroll = this._onScroll.bind(this);
     this.state = {
       listViewKey: Date.now(),
       scrolled: false // if scrolled the animation stops
@@ -49,14 +50,16 @@ export default class AnimatedListView extends Component {
 
   performAnimation() {
     this.setState({scrolled: false});
-    this.eventEmitter.emit('performAnimation', { someArg: 'argValue' });
+    this.eventEmitter.emit('performAnimation');
     this.setState({listViewKey: Date.now()})
   }
 
   _onScroll() {
 
     if (!this.state.scrolled) {
-      this.setState({scrolled: true})
+      this.setState({scrolled: true});
+      this.eventEmitter.emit('stopAnimation');
+
     }
     if (this.props.onScroll) {
       this.props.onScroll();
@@ -69,7 +72,7 @@ export default class AnimatedListView extends Component {
         key={this.state.listViewKey}
         {...this.props}
         renderRow={this._renderRow}
-        onScroll={() => this._onScroll()}
+        onScroll={this._onScroll}
       />
     );
   }
